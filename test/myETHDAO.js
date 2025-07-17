@@ -41,33 +41,13 @@ describe("MyETHDAO", () => {
             expect(count).equal(1)
         })
 
-        it("Check proposal title", async() => {
+        it("Check create proposal", async() => {
             const proposal = await dao.proposals(1)
             expect(proposal.title).equal("Proposal 1")
-        })
-
-        it("Check proposal summary", async() => {
-            const proposal = await dao.proposals(1)
             expect(proposal.summary).equal("Summary of proposal 1")
-        })
-
-        it("Check eth amount", async() => {
-            const proposal = await dao.proposals(1)
             expect(proposal.ethAmount).equal(ethers.parseEther("0.01"))
-        })
-
-        it("Check about owner", async() => {
-            const proposal = await dao.proposals(1)
             expect(proposal.aboutOwner).equal("About the owner of proposal 1")
-        })
-
-        it("Check recipient", async() => {
-            const proposal = await dao.proposals(1)
             expect(proposal.recipient).equal(deployer.address)
-        })
-
-        it("Check vote count", async () => {
-            const proposal = await dao.proposals(1)
             expect(proposal.votesFor).to.equal(1)
         })
     })
