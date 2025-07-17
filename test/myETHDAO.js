@@ -35,6 +35,14 @@ describe("MyETHDAO", () => {
             expect(result).equal(deployer.address)
         })
 
+        it("check stake amount", async() => {
+            let deployerStake = await dao.stakes(deployer.address)
+            expect(deployerStake).equal(ethers.parseEther("0.05"))
+
+            let userStake = await dao.stakes(user.address)
+            expect(userStake).equal(ethers.parseEther("0.01"))
+        })
+
         // create a proposal
         it("Check proposal count", async() => {
             const count = await dao.proposalCount()
