@@ -65,7 +65,7 @@ contract MyETHDAO {
 
     // ✅ Buat proposal
     function createProposal(string memory _title, string memory _summary, uint256 _ethAmount, string memory _aboutOwner) external {
-        require(stakes[msg.sender] >= 0.05 ether, "Need at least 0.05 ETH staked");
+        require(stakes[msg.sender] >= 0.1 ether, "Need at least 0.05 ETH staked");
         require(_ethAmount <= treasuryBalance, "Insufficient treasury funds");
         require(_ethAmount > 0, "Proposal amount must be greater than 0");
         require(bytes(_title).length > 0, "Title cannot be empty");

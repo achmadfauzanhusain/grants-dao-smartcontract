@@ -20,7 +20,7 @@ describe("MyETHDAO", () => {
         await dao.connect(user).deposit({ value: ethers.parseEther("0.01") })
 
         // deployer stake ETH for create proposal
-        await dao.connect(deployer).deposit({ value: ethers.parseEther("0.05") })
+        await dao.connect(deployer).deposit({ value: ethers.parseEther("0.1") })
 
         // deployer create a proposal
         await dao.connect(deployer).createProposal("Proposal 1", "Summary of proposal 1", ethers.parseEther("0.01"), "About the owner of proposal 1")
@@ -37,7 +37,7 @@ describe("MyETHDAO", () => {
 
         it("check stake amount", async() => {
             let deployerStake = await dao.stakes(deployer.address)
-            expect(deployerStake).equal(ethers.parseEther("0.05"))
+            expect(deployerStake).equal(ethers.parseEther("0.1"))
 
             let userStake = await dao.stakes(user.address)
             expect(userStake).equal(ethers.parseEther("0.01"))
