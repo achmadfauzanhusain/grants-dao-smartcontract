@@ -59,13 +59,18 @@ contract MyETHDAO {
 
     // ✅ Tarik ETH jika sudah tidak ingin voting
     function withdraw() external {
-        payable(msg.sender).transfer(address(this).balance);
-        emit Withdrawn(msg.sender, "Withdrawn all balance");
+        uint256 amount = stakes[msg.sender];
+        require(amount > 0, "No stake to withdraw");
+
+        stakes[msg.sender] = 0; // reset stake sebelum transfer (prevent re-entrancy)
+        payable(msg.sender).transfer(amount);
+
+        emit Withdrawn(msg.sender, "Stake withdrawn");
     }
 
     // ✅ Buat proposal
     function createProposal(string memory _title, string memory _summary, uint256 _ethAmount, string memory _aboutOwner) external {
-        require(stakes[msg.sender] >= 0.1 ether, "Need at least 0.05 ETH staked");
+        require(stakes[msg.sender] >= 0.1 ether, "Need at least 0.1 ETH staked");
         require(_ethAmount <= treasuryBalance, "Insufficient treasury funds");
         require(_ethAmount > 0, "Proposal amount must be greater than 0");
         require(bytes(_title).length > 0, "Title cannot be empty");
@@ -79,7 +84,7 @@ contract MyETHDAO {
         p.ethAmount = _ethAmount;
         p.aboutOwner = _aboutOwner;
         p.recipient = msg.sender; // penerima proposal adalah pembuatnya
-        p.deadline = block.timestamp + 3 minutes; // voting window
+        p.deadline = block.timestamp + 3 days; // voting window
         emit ProposalCreated(proposalCount, _title);
     }
 

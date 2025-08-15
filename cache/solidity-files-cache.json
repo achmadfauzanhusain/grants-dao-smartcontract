@@ -1,9 +1,9 @@
 {
   "_format": "hh-sol-cache-2",
   "files": {
-    "C:\\Users\\LENOVO\\OneDrive\\Desktop\\belajar-blockchain\\simple_dao\\contracts\\MyETHDAO.sol": {
-      "lastModificationDate": 1752834201433,
-      "contentHash": "7f9031b7815b798bc12da24ec2c767d7",
+    "C:\\Users\\LENOVO\\OneDrive\\Desktop\\belajar-blockchain\\dao_project\\simple_dao\\contracts\\MyETHDAO.sol": {
+      "lastModificationDate": 1755090307201,
+      "contentHash": "618aed7c2cf56f6b085cda617d69dbbe",
       "sourceName": "contracts/MyETHDAO.sol",
       "solcConfig": {
         "version": "0.8.28",
