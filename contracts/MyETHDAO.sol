@@ -2,8 +2,8 @@
 pragma solidity ^0.8.28;
 
 contract MyETHDAO {
-    address public owner;
-    uint256 public feeBasisPoints = 1;
+    address public immutable owner;
+    uint256 public constant feeBasisPoints = 1;
 
     struct Proposal {
         string title;
